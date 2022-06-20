@@ -1,0 +1,109 @@
+@import "../../../assets/styles/@mixins.scss";
+
+.product-list-viewer {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  outline: 0;
+  @include borderItem;
+
+  .icon-cross {
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+  &.active-viewer {
+    outline: 3px solid var(--focus-color);
+
+    i.icon-chevron-down {
+      transform: rotate(180deg);
+    }
+  }
+
+  i {
+    transition: all 0.3s;
+  }
+
+  .placeholder {
+    opacity: 0.5;
+  }
+
+  &.active-viewer {
+    .product-list-editor {
+      height: 300px;
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  .product-list-editor {
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: height 0.3s;
+    position: absolute;
+    width: 100%;
+    top: 45px;
+    left: 0;
+    max-height: 300px;
+    @include borderItem;
+
+    .editors {
+      .search-input {
+        position: relative;
+        margin: 10px;
+
+        input {
+          width: 100%;
+          text-indent: 10px;
+          height: 38px;
+          @include borderItem;
+        }
+
+        i {
+          position: absolute;
+          right: 10px;
+          top: 12px;
+          color: var(--inactive-color);
+        }
+      }
+
+      .add-new-product {
+        padding: 10px;
+        margin-bottom: 10px;
+        font: normal normal normal 14px/21px Poppins;
+
+        &:hover {
+          background: var(--hover-color);
+        }
+
+        i {
+          color: var(--inactive-color);
+        }
+      }
+    }
+
+    .horizontal-row {
+      border: 1px solid #000000;
+      opacity: 0.1;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .product-list {
+      max-height: 200px;
+      overflow: auto;
+
+      .product {
+        padding: 10px;
+
+        &:hover {
+          background: var(--hover-color);
+        }
+      }
+    }
+  }
+}

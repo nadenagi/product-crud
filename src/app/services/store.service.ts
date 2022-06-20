@@ -1,17 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-
-type Product = {
-  id: number;
-  name: string;
-  productType: number;
-  productCategory: string;
-  subCategory: boolean;
-  referenceId: number;
-  password: string;
-  deleveryFeesAmount: number;
-  deleveryFeesPercentage: number;
-};
+import { Product } from '../shared/types/Product';
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreService } from './services/store.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +8,7 @@ import { StoreService } from './services/store.service';
 export class AppComponent implements OnInit {
   title = 'kashier-task';
 
-  constructor(private store: StoreService) {
-    this.store.productList.subscribe((res: any) => {
-      console.log(res);
-    });
-  }
+  constructor() {}
 
   ngOnInit() {}
 }

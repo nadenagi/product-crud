@@ -1,2 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./assets/styles/icons";
+@import "./assets/styles/reset";
+
+:root {
+  --border-color: #d6d6d6;
+  --focus-color: #0080f966;
+  --inactive-color: #828282;
+  --hover-color: #edecee;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
