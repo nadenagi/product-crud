@@ -2,7 +2,8 @@
   (clickOutside)="openedProductEditor = false" (click)="openedProductEditor = !openedProductEditor">
   <p [ngClass]="selectedProduct.id != 0 ? '' : 'placeholder'">
     {{selectedProduct.id != 0 ? selectedProduct.name : 'select or add new product'}}
-    <span *ngIf="selectedProduct.id != 0" class="icon-cross" (click)="selectedProduct = defaultProduct"></span>
+    <span *ngIf="selectedProduct.id != 0" class="icon-cross"
+      (click)="selectedProduct = defaultProduct; showProductForm = false"></span>
   </p>
 
   <i class="icon-chevron-down"></i>
@@ -14,7 +15,7 @@
         <i class="icon-search"></i>
       </div>
 
-      <div class="add-new-product">
+      <div class="add-new-product" (click)="showProductForm = true">
         <i class="icon-plus"></i>
         Add new product
       </div>
@@ -22,9 +23,13 @@
     <div class="horizontal-row"></div>
 
     <div class="product-list">
-      <div class="product" *ngFor="let item of filteredProducts" (click)="selectedProduct = item">
+      <div class="product" *ngFor="let item of filteredProducts" (click)="selectedProduct = item; showProductForm = true">
         {{item.name}}
       </div>
     </div>
   </div>
 </div>
+
+<ng-container *ngIf="showProductForm">
+  <app-product-form></app-product-form>
+</ng-container>

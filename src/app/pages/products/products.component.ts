@@ -33,6 +33,7 @@ export class ProductsComponent implements OnInit {
     deleveryFeesAmount: 0,
     deleveryFeesPercentage: 0,
   };
+  showProductForm: boolean = false;
 
   constructor(private store: StoreService) {}
 
