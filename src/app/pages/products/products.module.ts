@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ClickOutsideModule } from 'ng-click-outside';
 
 import { RouterModule } from '@angular/router';
+import { ProductFormComponent } from './product-form/product-form.component';
 
 const router = [
   {
@@ -28,7 +29,7 @@ const router = [
     ReactiveFormsModule,
     ClickOutsideModule,
   ],
-  declarations: [ProductsComponent],
+  declarations: [ProductsComponent, ProductFormComponent],
   providers: [],
 })
 export class ProductsModule {}
