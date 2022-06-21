@@ -41,4 +41,13 @@ export class StoreService {
       this.productList.next(res);
     }
   }
+
+  deleteProduct(product: Product) {
+    let res = this.productList.getValue();
+    let index = res.findIndex((item: any) => item.id == product.id);
+    if (index != -1) {
+      res.splice(index, 1);
+      this.productList.next(res);
+    }
+  }
 }

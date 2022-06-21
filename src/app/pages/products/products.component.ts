@@ -34,12 +34,34 @@ export class ProductsComponent implements OnInit {
     deleveryFeesPercentage: 0,
   };
   showProductForm: boolean = false;
+  productList: any;
 
   constructor(private store: StoreService) {}
 
   ngOnInit() {
     this.store.productList.subscribe((items: any) => {
       this.filteredProducts = items;
+      this.productList = items.length;
     });
+  }
+
+  closeForm() {
+    this.showProductForm = false;
+    this.selectedProduct = this.defaultProduct;
+  }
+
+  saveProduct(product: Product) {
+    if (product.id == 0) {
+      product.id = ++this.productList;
+      this.store.addProductToList(product);
+    } else {
+      this.store.updateProduct(product);
+    }
+    this.showProductForm = false;
+    this.selectedProduct = this.defaultProduct;
+  }
+
+  deleteProduct(product: Product) {
+    this.store.deleteProduct(product);
   }
 }

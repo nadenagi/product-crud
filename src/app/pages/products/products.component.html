@@ -15,7 +15,7 @@
         <i class="icon-search"></i>
       </div>
 
-      <div class="add-new-product" (click)="showProductForm = true">
+      <div class="add-new-product" (click)="selectedProduct = defaultProduct;showProductForm = true">
         <i class="icon-plus"></i>
         Add new product
       </div>
@@ -23,7 +23,8 @@
     <div class="horizontal-row"></div>
 
     <div class="product-list">
-      <div class="product" *ngFor="let item of filteredProducts" (click)="selectedProduct = item; showProductForm = true">
+      <div class="product" *ngFor="let item of filteredProducts"
+        (click)="selectedProduct = item; showProductForm = true">
         {{item.name}}
       </div>
     </div>
@@ -31,5 +32,7 @@
 </div>
 
 <ng-container *ngIf="showProductForm">
-  <app-product-form></app-product-form>
+  <app-product-form [selectedProduct]="selectedProduct" (closeForm)="closeForm()" (addEditProduct)="saveProduct($event)"
+    (deleteProductEmit)="deleteProduct($event)">
+  </app-product-form>
 </ng-container>

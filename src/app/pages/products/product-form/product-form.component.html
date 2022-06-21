@@ -1,1 +1,70 @@
-<p>product-form works!</p>
+<form [formGroup]="productForm" (ngSubmit)="saveProduct()">
+  <div class="form-group">
+    <label for="name">Product Name</label>
+    <input type="text" id="inputName" placeholder="Product Name" formControlName="name">
+  </div>
+
+  <div class="form-group">
+    <label for="name">Product Type</label>
+    <div class="flex">
+      <div class="radio-item" *ngFor="let type of productTypes">
+        <input type="radio" [id]="type.value" name="productType" formControlName="productType" [value]="type.value"
+          [placeholder]="type.name">
+        <label class="inline-label" [for]="type.name">{{type.name}}</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="name">Product Category</label>
+    <input type="text" placeholder="Product Name" id="inputProductCategory" formControlName="productCategory">
+  </div>
+
+  <div class="form-group radio-item">
+    <label class="container">This is a sub-category
+      <input type="checkbox" placeholder="Product Name" id="inputProdctSubCategory" formControlName="subCategory">
+      <span class="checkmark"></span>
+    </label>
+  </div>
+
+  <div class="grouped-inputs">
+    <div class="form-group">
+      <label for="name">Reference ID <span>(optional)</span></label>
+      <input type="text" placeholder="Product Name" id="inputReferenceID" formControlName="referenceId">
+    </div>
+    <div class="form-group">
+      <label for="name">password</label>
+      <div class="password-input">
+        <input type="password" placeholder="Product Name" id="inputPassword" formControlName="password">
+        <i [ngClass]="showenPasswrd ? 'icon-eye' : 'icon-eye-off'" (click)="chanegePasswordType()"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="grouped-inputs">
+    <div class="form-group">
+      <label for="name">Delevery fees amount</label>
+      <div class="content-input">
+        <div class="value-content">EGP</div>
+        <input type="text" placeholder="Product Name" id="inputReferenceID" formControlName="deleveryFeesAmount">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="name">delevery fees percentage</label>
+      <div class="content-input">
+        <div class="value-content">%</div>
+        <input type="text" placeholder="Product Name" id="inputPassword" formControlName="deleveryFeesPercentage">
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <div class="delete-product">
+      <button class="delete" (click)="deleteProduct()" *ngIf="selectedProduct.id != 0">Delete</button>
+    </div>
+    <div class="submit-options">
+      <button class="cancel" (click)="cancelEdit()">Cancel</button>
+      <button class="submit" (click)="saveProduct()">Submit</button>
+    </div>
+  </div>
+</form>

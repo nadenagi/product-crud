@@ -7,6 +7,9 @@
   --focus-color: #0080f966;
   --inactive-color: #828282;
   --hover-color: #edecee;
+  --white-color: #ffffff;
+  --theme-color: #00bcb4;
+  --danger-color: #c40000;
 }
 
 ::-webkit-scrollbar {
@@ -27,4 +30,9 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+body {
+  height: 100vh;
+  background: #f6f7fb;
 }
