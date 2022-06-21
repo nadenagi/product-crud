@@ -3,9 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PopupComponent } from './components/popup/popup.component';
+import { ToasterComponent } from './components/toaster/toaster.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PopupComponent, ToasterComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

@@ -17,12 +17,12 @@
 
   <div class="form-group">
     <label for="name">Product Category</label>
-    <input type="text" placeholder="Product Name" id="inputProductCategory" formControlName="productCategory">
+    <input type="text" placeholder="Product Category" id="inputProductCategory" formControlName="productCategory">
   </div>
 
   <div class="form-group radio-item">
     <label class="container">This is a sub-category
-      <input type="checkbox" placeholder="Product Name" id="inputProdctSubCategory" formControlName="subCategory">
+      <input type="checkbox" id="inputProdctSubCategory" formControlName="subCategory">
       <span class="checkmark"></span>
     </label>
   </div>
@@ -30,12 +30,12 @@
   <div class="grouped-inputs">
     <div class="form-group">
       <label for="name">Reference ID <span>(optional)</span></label>
-      <input type="text" placeholder="Product Name" id="inputReferenceID" formControlName="referenceId">
+      <input type="text" placeholder="Reference ID" id="inputReferenceID" formControlName="referenceId">
     </div>
     <div class="form-group">
       <label for="name">password</label>
       <div class="password-input">
-        <input type="password" placeholder="Product Name" id="inputPassword" formControlName="password">
+        <input type="password" placeholder="password" id="inputPassword" formControlName="password">
         <i [ngClass]="showenPasswrd ? 'icon-eye' : 'icon-eye-off'" (click)="chanegePasswordType()"></i>
       </div>
     </div>
@@ -46,14 +46,16 @@
       <label for="name">Delevery fees amount</label>
       <div class="content-input">
         <div class="value-content">EGP</div>
-        <input type="text" placeholder="Product Name" id="inputReferenceID" formControlName="deleveryFeesAmount">
+        <input type="text" placeholder="Delevery fees amount" id="inputReferenceID"
+          formControlName="deleveryFeesAmount">
       </div>
     </div>
     <div class="form-group">
       <label for="name">delevery fees percentage</label>
       <div class="content-input">
         <div class="value-content">%</div>
-        <input type="text" placeholder="Product Name" id="inputPassword" formControlName="deleveryFeesPercentage">
+        <input type="text" placeholder="elevery fees percentage" id="inputPassword"
+          formControlName="deleveryFeesPercentage">
       </div>
     </div>
   </div>
