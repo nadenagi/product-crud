@@ -32,7 +32,14 @@
 </div>
 
 <ng-container *ngIf="showProductForm">
-  <app-product-form [selectedProduct]="selectedProduct" (closeForm)="closeForm()" (addEditProduct)="saveProduct($event)"
-    (deleteProductEmit)="deleteProduct($event)">
+  <app-product-form [selectedProduct]="selectedProduct" (closeForm)="closeForm()"
+    (deleteProductEmit)="updateProduct($event, 'delete')" (addEditProduct)="updateProduct($event, 'update')">
   </app-product-form>
+</ng-container>
+
+
+<ng-container *ngIf="showconfirmationPopup">
+  <app-popup (closePopupEmitter)="showconfirmationPopup = false" [seletcedProduct]="selectedProduct"
+    [popupType]="popupType" (addEditProduct)="saveProduct($event)" (deleteProductEmit)="deleteProduct($event)">
+  </app-popup>
 </ng-container>

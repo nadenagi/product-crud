@@ -1,3 +1,4 @@
+import { ToasterComponent } from './../../components/toaster/toaster.component';
 import { ProductsComponent } from './products.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -6,6 +7,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
 
 import { RouterModule } from '@angular/router';
 import { ProductFormComponent } from './product-form/product-form.component';
+import { PopupComponent } from 'src/app/components/popup/popup.component';
 
 const router = [
   {
@@ -29,7 +31,12 @@ const router = [
     ReactiveFormsModule,
     ClickOutsideModule,
   ],
-  declarations: [ProductsComponent, ProductFormComponent],
+  declarations: [
+    ProductsComponent,
+    ProductFormComponent,
+    PopupComponent,
+    ToasterComponent,
+  ],
   providers: [],
 })
 export class ProductsModule {}

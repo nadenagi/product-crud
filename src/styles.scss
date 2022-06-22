@@ -9,7 +9,9 @@
   --hover-color: #edecee;
   --white-color: #ffffff;
   --theme-color: #00bcb4;
+  --theme-hover-color: #04e2d7;
   --danger-color: #c40000;
+  --danger-hover-color: #f50202;
 }
 
 ::-webkit-scrollbar {
@@ -35,4 +37,38 @@
 body {
   height: 100vh;
   background: #f6f7fb;
+}
+
+button {
+  cursor: pointer;
+}
+
+.cancel {
+  color: var(--inactive-color);
+  margin-right: 20px;
+}
+
+.submit,
+.delete-outlined {
+  width: 94px;
+  height: 40px;
+  border-radius: 5px;
+  color: var(--white-color);
+  transition: all 0.3s;
+}
+
+.submit {
+  background: var(--theme-color) !important;
+
+  &:hover {
+    background: var(--theme-hover-color) !important;
+  }
+}
+
+.delete-outlined {
+  background: var(--danger-color) !important;
+
+  &:hover {
+    background: var(--danger-hover-color) !important;
+  }
 }

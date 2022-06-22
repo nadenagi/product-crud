@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { throwIfEmpty } from 'rxjs';
 import { StoreService } from 'src/app/services/store.service';
 import { Product } from 'src/app/shared/types/Product';
 
@@ -10,6 +11,7 @@ import { Product } from 'src/app/shared/types/Product';
 export class ProductsComponent implements OnInit {
   filteredProducts: Product[] = [];
   openedProductEditor: boolean = false;
+  showconfirmationPopup: boolean = false;
   defaultProduct: Product = {
     id: 0,
     name: '',
@@ -35,6 +37,7 @@ export class ProductsComponent implements OnInit {
   };
   showProductForm: boolean = false;
   productList: any;
+  popupType: string = '';
 
   constructor(private store: StoreService) {}
 
@@ -46,8 +49,15 @@ export class ProductsComponent implements OnInit {
   }
 
   closeForm() {
+    this.showconfirmationPopup = false;
     this.showProductForm = false;
     this.selectedProduct = this.defaultProduct;
+  }
+
+  updateProduct(product: Product, type: string) {
+    this.selectedProduct = product;
+    this.showconfirmationPopup = true;
+    this.popupType = type;
   }
 
   saveProduct(product: Product) {
@@ -57,11 +67,16 @@ export class ProductsComponent implements OnInit {
     } else {
       this.store.updateProduct(product);
     }
+
     this.showProductForm = false;
+    this.showconfirmationPopup = false;
     this.selectedProduct = this.defaultProduct;
   }
 
   deleteProduct(product: Product) {
     this.store.deleteProduct(product);
+    this.showProductForm = false;
+    this.showconfirmationPopup = false;
+    this.selectedProduct = this.defaultProduct;
   }
 }
