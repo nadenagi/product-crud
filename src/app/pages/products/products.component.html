@@ -43,3 +43,8 @@
     [popupType]="popupType" (addEditProduct)="saveProduct($event)" (deleteProductEmit)="deleteProduct($event)">
   </app-popup>
 </ng-container>
+
+<ng-container *ngIf="showToaster">
+  <app-toaster [message]=message (closeToasterEmitter)="showToaster = false">
+  </app-toaster>
+</ng-container>

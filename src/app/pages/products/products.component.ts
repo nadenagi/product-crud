@@ -12,6 +12,8 @@ export class ProductsComponent implements OnInit {
   filteredProducts: Product[] = [];
   openedProductEditor: boolean = false;
   showconfirmationPopup: boolean = false;
+  showToaster: boolean = false;
+  message: string = '';
   defaultProduct: Product = {
     id: 0,
     name: '',
@@ -64,8 +66,12 @@ export class ProductsComponent implements OnInit {
     if (product.id == 0) {
       product.id = ++this.productList;
       this.store.addProductToList(product);
+      this.message = 'product added successfully';
+      this.showToaster = true;
     } else {
       this.store.updateProduct(product);
+      this.message = 'product updated successfully';
+      this.showToaster = true;
     }
 
     this.showProductForm = false;
@@ -78,5 +84,7 @@ export class ProductsComponent implements OnInit {
     this.showProductForm = false;
     this.showconfirmationPopup = false;
     this.selectedProduct = this.defaultProduct;
+    this.message = 'product deleted successfully';
+    this.showToaster = true;
   }
 }
