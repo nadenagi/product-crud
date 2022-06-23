@@ -49,6 +49,14 @@ form {
     display: flex;
     justify-content: space-around;
 
+    @media(max-width: 500px){
+      flex-direction: column;
+
+      .form-group{
+        width: 100% !important;
+      }
+    }
+
     .form-group {
       width: calc(50% - 15px);
     }
