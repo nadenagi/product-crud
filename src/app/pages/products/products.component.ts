@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { throwIfEmpty } from 'rxjs';
+import { Subject } from 'rxjs';
 import { StoreService } from 'src/app/services/store.service';
 import { Product } from 'src/app/shared/types/Product';
 
@@ -9,6 +9,7 @@ import { Product } from 'src/app/shared/types/Product';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
+  baseItems: Product[] = [];
   filteredProducts: Product[] = [];
   openedProductEditor: boolean = false;
   showconfirmationPopup: boolean = false;
@@ -40,14 +41,30 @@ export class ProductsComponent implements OnInit {
   showProductForm: boolean = false;
   productList: any;
   popupType: string = '';
+  private readonly searchSubject = new Subject<string | undefined>();
 
   constructor(private store: StoreService) {}
 
+  onSearchQueryInput(event: Event) {
+    const searchQuery = (event.target as HTMLInputElement).value;
+    const trimmed = searchQuery?.trim();
+    this.filteredProducts = this.baseItems.filter((item: any) => {
+      return item.name.includes(trimmed);
+    });
+  }
+
   ngOnInit() {
     this.store.productList.subscribe((items: any) => {
+      this.baseItems = items;
       this.filteredProducts = items;
       this.productList = items.length;
     });
+  }
+
+  selectItem(item: Product) {
+    this.selectedProduct = item;
+    this.showProductForm = true;
+    this.openedProductEditor = false;
   }
 
   closeForm() {

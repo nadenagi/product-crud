@@ -1,21 +1,23 @@
 <div class="product-list-viewer" [ngClass]="openedProductEditor ? 'active-viewer' : ''"
-  (clickOutside)="openedProductEditor = false" (click)="openedProductEditor = !openedProductEditor">
-  <p [ngClass]="selectedProduct.id != 0 ? '' : 'placeholder'">
-    {{selectedProduct.id != 0 ? selectedProduct.name : 'select or add new product'}}
-    <span *ngIf="selectedProduct.id != 0" class="icon-cross"
-      (click)="selectedProduct = defaultProduct; showProductForm = false"></span>
-  </p>
+  (clickOutside)="openedProductEditor = false">
+  <div class="header-container" (click)="openedProductEditor = !openedProductEditor">
+    <p [ngClass]="selectedProduct.id != 0 ? '' : 'placeholder'">
+      {{selectedProduct.id != 0 ? selectedProduct.name : 'select or add new product'}}
+      <span *ngIf="selectedProduct.id != 0" class="icon-cross"
+        (click)="selectedProduct = defaultProduct; showProductForm = false"></span>
+    </p>
+  </div>
 
   <i class="icon-chevron-down"></i>
 
   <div class="product-list-editor">
     <div class="editors">
       <div class="search-input">
-        <input type="text" placeholder="Search products">
+        <input type="text" placeholder="Search products" (input)="onSearchQueryInput($event)">
         <i class="icon-search"></i>
       </div>
 
-      <div class="add-new-product" (click)="selectedProduct = defaultProduct;showProductForm = true">
+      <div class="add-new-product" (click)="selectItem(defaultProduct)">
         <i class="icon-plus"></i>
         Add new product
       </div>
@@ -24,7 +26,7 @@
 
     <div class="product-list">
       <div class="product" *ngFor="let item of filteredProducts"
-        (click)="selectedProduct = item; showProductForm = true">
+        (click)="selectItem(item)">
         {{item.name}}
       </div>
     </div>
