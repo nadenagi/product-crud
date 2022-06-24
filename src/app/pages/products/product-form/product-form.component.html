@@ -1,9 +1,18 @@
 <form [formGroup]="productForm">
   <div class="form-group">
     <label for="name">Product Name</label>
-    <input type="text" id="inputName" placeholder="Product Name" formControlName="name">
-    <div class="error-message" *ngIf="submitted && productForm.get('name')?.errors">
+    <input type="text" id="inputName" class="border-input" placeholder="Product Name" formControlName="name">
+    <div class="error-message" *ngIf="submitted && productForm.get('name')?.errors?.required">
       product name is required
+    </div>
+    <div class="error-message" *ngIf="submitted && productForm.get('name')?.errors?.minLength">
+      product name should be at least 5 characters
+    </div>
+    <div class="error-message" *ngIf="submitted && productForm.get('name')?.errors?.maxLength">
+      product name should be at max 20 characters
+    </div>
+    <div class="error-message" *ngIf="submitted && productForm.get('name')?.errors?.pattern">
+      product name can't have special characters
     </div>
   </div>
 
@@ -17,15 +26,34 @@
       </div>
     </div>
     <div class="error-message" *ngIf="submitted && productForm.get('productType')?.errors">
-      product Type is required
+      Product Type is required
+    </div>
+    <div class="error-message" *ngIf="submitted && productForm.get('productType')?.errors?.minLength">
+      Product Type should be at least 5 characters
+    </div>
+    <div class="error-message" *ngIf="submitted && productForm.get('productType')?.errors?.maxLength">
+      Product Type should be at max 20 characters
+    </div>
+    <div class="error-message" *ngIf="submitted && productForm.get('productType')?.errors?.pattern">
+      product Type can't have special characters
     </div>
   </div>
 
   <div class="form-group">
     <label for="name">Product Category</label>
-    <input type="text" placeholder="Product Category" id="inputProductCategory" formControlName="productCategory">
-    <div class="error-message" *ngIf="submitted && productForm.get('productCategory')?.errors">
+    <input type="text" class="border-input" placeholder="Product Category" id="inputProductCategory"
+      formControlName="productCategory">
+    <div class="error-message" *ngIf="submitted && productForm.get('productCategory')?.errors?.required">
       product Category is required
+    </div>
+    <div class="error-message" *ngIf="submitted && productForm.get('productCategory')?.errors?.minLength">
+      product Category should be at least 5 characters
+    </div>
+    <div class="error-message" *ngIf="submitted && productForm.get('productCategory')?.errors?.maxLength">
+      product Category should be at max 20 characters
+    </div>
+    <div class="error-message" *ngIf="submitted && productForm.get('productCategory')?.errors?.pattern">
+      product Category can't have special characters
     </div>
   </div>
 
@@ -39,17 +67,25 @@
   <div class="grouped-inputs">
     <div class="form-group">
       <label for="name">Reference ID <span>(optional)</span></label>
-      <input type="text" placeholder="Reference ID" id="inputReferenceID" formControlName="referenceId">
+      <input type="text" class="border-input" placeholder="Reference ID" id="inputReferenceID"
+        formControlName="referenceId">
     </div>
     <div class="form-group">
       <label for="name">password</label>
       <div class="password-input">
-        <input type="password" placeholder="password" id="inputPassword" formControlName="password">
+        <input type="password" class="border-input" placeholder="password" id="inputPassword"
+          formControlName="password">
         <i [ngClass]="showenPasswrd ? 'icon-eye' : 'icon-eye-off'" (click)="chanegePasswordType()"></i>
       </div>
       <div class="error-message"
-        *ngIf="submitted && productForm.get('password')?.errors">
+        *ngIf="submitted && productForm.get('password')?.errors?.required">
         password is required
+      </div>
+      <div class="error-message" *ngIf="submitted && productForm.get('password')?.errors?.minLength">
+        password should be at least 8 characters
+      </div>
+      <div class="error-message" *ngIf="submitted && productForm.get('password')?.errors?.maxLength">
+        password should be at max 15 characters
       </div>
     </div>
   </div>
@@ -59,7 +95,7 @@
       <label for="name">Delevery fees amount</label>
       <div class="content-input">
         <div class="value-content">EGP</div>
-        <input type="text" placeholder="Delevery fees amount" id="inputReferenceID"
+        <input type="text" class="border-input" placeholder="Delevery fees amount" id="inputReferenceID"
           formControlName="deleveryFeesAmount">
       </div>
     </div>
@@ -67,7 +103,7 @@
       <label for="name">delevery fees percentage</label>
       <div class="content-input">
         <div class="value-content">%</div>
-        <input type="text" placeholder="elevery fees percentage" id="inputPassword"
+        <input type="text" class="border-input" placeholder="elevery fees percentage" id="inputPassword"
           formControlName="deleveryFeesPercentage">
       </div>
     </div>
@@ -79,7 +115,8 @@
     </div>
     <div class="submit-options">
       <button class="cancel" (click)="cancelEdit()">Cancel</button>
-      <button class="submit" (click)="saveProduct()">Submit</button>
+      <button class="submit" (click)="saveProduct()" [ngClass]="{'disabled': !productForm.valid}"
+        [disabled]="!productForm.valid">Submit</button>
     </div>
   </div>
 </form>

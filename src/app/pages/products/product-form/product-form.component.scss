@@ -29,8 +29,7 @@ form {
       margin-bottom: 0;
     }
 
-    input[type="text"],
-    input[type="password"] {
+    .border-input {
       width: 100%;
       max-width: 500px;
       height: 40px;
