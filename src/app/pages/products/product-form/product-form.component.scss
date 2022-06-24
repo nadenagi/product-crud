@@ -7,6 +7,12 @@ form {
     width: 100%;
     margin-bottom: 1rem;
 
+    .error-message{
+      text-indent: 10px;
+      color: var(--danger-color);
+      margin-top: 5px;
+    }
+
     label {
       display: block;
       margin-bottom: 0.5rem;

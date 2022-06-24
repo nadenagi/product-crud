@@ -6,7 +6,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product-form',
@@ -20,6 +20,7 @@ export class ProductFormComponent implements OnInit, OnChanges {
   @Output() deleteProductEmit = new EventEmitter();
   productForm: FormGroup = new FormGroup({});
   showenPasswrd: boolean = false;
+  submitted: boolean = false;
   productTypes: any[] = [
     {
       name: 'Type 1',
@@ -38,12 +39,21 @@ export class ProductFormComponent implements OnInit, OnChanges {
   setForm() {
     this.productForm = new FormGroup({
       id: new FormControl(this.selectedProduct?.id),
-      name: new FormControl(this.selectedProduct?.name),
-      productType: new FormControl(this.selectedProduct?.productType),
-      productCategory: new FormControl(this.selectedProduct?.productCategory),
+      name: new FormControl(this.selectedProduct?.name, Validators.required),
+      productType: new FormControl(
+        this.selectedProduct?.productType,
+        Validators.required
+      ),
+      productCategory: new FormControl(
+        this.selectedProduct?.productCategory,
+        Validators.required
+      ),
       subCategory: new FormControl(this.selectedProduct?.subCategory),
       referenceId: new FormControl(this.selectedProduct?.referenceId),
-      password: new FormControl(this.selectedProduct?.password),
+      password: new FormControl(
+        this.selectedProduct?.password,
+        Validators.required
+      ),
       deleveryFeesAmount: new FormControl(
         this.selectedProduct?.deleveryFeesAmount
       ),
@@ -55,20 +65,29 @@ export class ProductFormComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     this.setForm();
+    this.submitted = false;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.submitted = false;
+  }
 
   saveProduct() {
-    this.addEditProduct.emit(this.productForm.value);
+    if (this.productForm.valid) {
+      this.addEditProduct.emit(this.productForm.value);
+    } else {
+      this.submitted = true;
+    }
   }
 
   deleteProduct() {
     this.deleteProductEmit.emit(this.productForm.value);
+    this.submitted = false;
   }
 
   cancelEdit() {
     this.closeForm.emit();
+    this.submitted = false;
   }
 
   chanegePasswordType() {

@@ -2,6 +2,9 @@
   <div class="form-group">
     <label for="name">Product Name</label>
     <input type="text" id="inputName" placeholder="Product Name" formControlName="name">
+    <div class="error-message" *ngIf="submitted && productForm.get('name')?.errors">
+      product name is required
+    </div>
   </div>
 
   <div class="form-group">
@@ -13,11 +16,17 @@
         <label class="inline-label" [for]="type.name">{{type.name}}</label>
       </div>
     </div>
+    <div class="error-message" *ngIf="submitted && productForm.get('productType')?.errors">
+      product Type is required
+    </div>
   </div>
 
   <div class="form-group">
     <label for="name">Product Category</label>
     <input type="text" placeholder="Product Category" id="inputProductCategory" formControlName="productCategory">
+    <div class="error-message" *ngIf="submitted && productForm.get('productCategory')?.errors">
+      product Category is required
+    </div>
   </div>
 
   <div class="form-group radio-item">
@@ -37,6 +46,10 @@
       <div class="password-input">
         <input type="password" placeholder="password" id="inputPassword" formControlName="password">
         <i [ngClass]="showenPasswrd ? 'icon-eye' : 'icon-eye-off'" (click)="chanegePasswordType()"></i>
+      </div>
+      <div class="error-message"
+        *ngIf="submitted && productForm.get('password')?.errors">
+        password is required
       </div>
     </div>
   </div>
