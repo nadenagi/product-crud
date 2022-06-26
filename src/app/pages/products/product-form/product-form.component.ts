@@ -43,13 +43,10 @@ export class ProductFormComponent implements OnInit, OnChanges {
                 Validators.required,
                 Validators.minLength(5),
                 Validators.maxLength(20),
-                Validators.pattern('^[a-zA-Z0-9]{5,}$'),
+                Validators.pattern('^[a-z A-Z 0-9 ]{5,}$'),
             ]),
             productType: new FormControl(this.selectedProduct?.productType, [
                 Validators.required,
-                Validators.minLength(5),
-                Validators.maxLength(20),
-                Validators.pattern('^[a-zA-Z0-9]{5,}$'),
             ]),
             productCategory: new FormControl(
                 this.selectedProduct?.productCategory,
@@ -57,7 +54,7 @@ export class ProductFormComponent implements OnInit, OnChanges {
                     Validators.required,
                     Validators.minLength(5),
                     Validators.maxLength(20),
-                    Validators.pattern('^[a-zA-Z0-9]{5,}$'),
+                    Validators.pattern('^[a-z A-Z 0-9 ]{5,}$'),
                 ]
             ),
             subCategory: new FormControl(this.selectedProduct?.subCategory),
